@@ -5,6 +5,7 @@ import json
 import os
 import numpy as np
 import tensorflow as tf
+import textwrap
 
 #from src 
 import model, sample, encoder
@@ -62,7 +63,7 @@ def interact_model(
                     generated += 1
                     text = enc.decode(out[i])
                     print("=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40)
-                    print(text)
+                    print(textwrap.wrap(text))
             print("=" * 80)
 
 if __name__ == '__main__':
