@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from google.colab import files
 
 import fire
 import json
