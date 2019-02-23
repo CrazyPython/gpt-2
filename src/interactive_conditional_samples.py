@@ -48,7 +48,7 @@ def interact_model(
         saver.restore(sess, ckpt)
 
         while True:
-            raw_text = input("Model prompt >>> ")
+            raw_text = files.upload().values()[0].decode("utf-8")
             while not raw_text:
                 print('Prompt should not be empty!')
                 raw_text = input("Model prompt >>> ")
