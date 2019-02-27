@@ -35,7 +35,7 @@ def interact_model(
     with tf.Session(graph=tf.Graph()) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
         if seed is None:
-            seed = random.SystemRandom().random()
+            seed = random.SystemRandom().randint(1, 10000000000000000000000000000000)
         print(seed)
         np.random.seed(seed)
         tf.set_random_seed(seed)
