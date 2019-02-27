@@ -7,6 +7,7 @@ import numpy as np
 import tensorflow as tf
 
 import model, sample, encoder
+import random
 
 def interact_model(
     model_name='117M',
