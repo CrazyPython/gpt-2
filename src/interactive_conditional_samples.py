@@ -5,6 +5,7 @@ import json
 import os
 import numpy as np
 import tensorflow as tf
+import ast
 
 import model, sample, encoder
 import random
