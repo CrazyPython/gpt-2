@@ -22,7 +22,7 @@ def top_k_logits(logits, k):
     )
 
 
-def sample_sequence(*, hparams, length, start_token=None, batch_size=None, context=None, temperature=1, top_k=0):
+def sample_sequence(*, hparams, length, start_token=None, batch_size=None, context=None, temperature, top_k=0):
     if start_token is None:
         assert context is not None, 'Specify exactly one of start_token and context!'
     else:
@@ -48,7 +48,7 @@ def sample_sequence(*, hparams, length, start_token=None, batch_size=None, conte
 
         def body(past, prev, output):
             next_outputs = step(hparams, prev[:, tf.newaxis], past=past)
-            logits = next_outputs['logits'][:, -1, :]  / tf.to_float(temperature)
+            logits = next_outputs['logits'][:, -1, :]  / tf.to_float(next(temperature))
             logits = top_k_logits(logits, k=top_k)
             samples = tf.multinomial(logits, num_samples=1, output_dtype=tf.int32)
             return [
