@@ -16,7 +16,7 @@ def interact_model(
     nsamples=1,
     batch_size=None,
     length=None,
-    temperature=1,
+    initial_temperature=1,
     top_k=0,
 ):
     if batch_size is None:
@@ -37,11 +37,19 @@ def interact_model(
 
     with tf.Session(graph=tf.Graph()) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
+        def temperature_generator(initial):
+            yield initial
+            while True:
+                try:
+                    yield float(input())
+                except ValueError:
+                    pass
+        
         output = sample.sample_sequence(
             hparams=hparams, length=length,
             context=context,
             batch_size=batch_size,
-            temperature=temperature, top_k=top_k
+            temperature=temperature_generator(temperature), top_k=top_k
         )
 
         saver = tf.train.Saver()
