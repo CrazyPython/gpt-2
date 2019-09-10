@@ -49,7 +49,7 @@ def interact_model(
             hparams=hparams, length=length,
             context=context,
             batch_size=batch_size,
-            temperature=temperature_generator(temperature), top_k=top_k
+            temperature=initial_temperature, top_k=top_k
         )
 
         saver = tf.train.Saver()
