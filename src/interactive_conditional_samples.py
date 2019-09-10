@@ -73,7 +73,6 @@ def interact_model(
         while True:
             context_tokens = enc.encode(raw_text)
             generated = 0
-            if input_text
             for _ in range(nsamples // 1):
                 out = sess.run(output, feed_dict={
                     context: [context_tokens for _ in range(1)]
